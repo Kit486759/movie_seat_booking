@@ -1,0 +1,129 @@
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.appWrap {
+  border: 1px solid black;
+  height: 550px;
+  width: 500px;
+  margin: auto;
+}
+
+.appWrap .displayWrap {
+  height: 80px;
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.appWrap .displayWrap .displayInfo {
+  height: 80px;
+  width: 60%;
+}
+
+.appWrap .displayWrap .displayPrice {
+  height: 80px;
+  width: 40%;
+  border: 1px solid red;
+}
+
+.appWrap .iconWrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  width: 300px;
+  margin: 10px auto 0;
+}
+
+.appWrap .iconWrap span {
+  height: 30px;
+  line-height: 25px;
+}
+
+.appWrap .iconWrap .selectSeat {
+  background-color: #1c3f00;
+  height: 20px;
+  width: 20px;
+  margin: 3px 2px;
+  margin-left: 15px;
+}
+
+.appWrap .iconWrap .seat {
+  background-color: chartreuse;
+  height: 20px;
+  width: 20px;
+  margin: 3px 2px;
+  margin-left: 15px;
+}
+
+.appWrap .iconWrap .seatBooked {
+  background-color: red;
+  height: 20px;
+  width: 20px;
+  margin: 3px 2px;
+  margin-left: 15px;
+}
+
+.appWrap .seatWrap {
+  border: 1px solid gray;
+  height: 340px;
+  width: 350px;
+  margin: 20px auto 0;
+  padding: 10px;
+}
+
+.appWrap .seatWrap .screen {
+  height: 20px;
+  width: 350px;
+  background-color: rgba(190, 190, 190, 0.486);
+  margin: 5px auto 20px;
+  text-align: center;
+  color: grey;
+}
+
+.appWrap .seatWrap div:nth-child(4n + 3) {
+  margin-bottom: 15px;
+}
+
+.appWrap .seatWrap .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.appWrap .seatWrap .row .selectSeat {
+  background-color: #1c3f00;
+  height: 20px;
+  width: 20px;
+  margin: 3px 2px;
+}
+
+.appWrap .seatWrap .row .seat {
+  background-color: chartreuse;
+  height: 20px;
+  width: 20px;
+  margin: 3px 2px;
+}
+
+.appWrap .seatWrap .row .seat:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.appWrap .seatWrap .row .seatBooked {
+  background-color: red;
+  height: 20px;
+  width: 20px;
+  margin: 3px 2px;
+}
+
+.appWrap .seatWrap .row div:nth-child(8n + 2) {
+  margin-right: 25px;
+}
+/*# sourceMappingURL=style.css.map */
