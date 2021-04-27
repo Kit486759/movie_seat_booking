@@ -1,12 +1,11 @@
 
 
-let seat = document.getElementsByClassName("seat")
-let selectSeat = document.getElementsByClassName("selectSeat")
-let displayInfo = document.getElementsByClassName("displayInfo")[0]
+let seat = document.querySelectorAll(".row .seat:not(.booked)")
+
+let seatWrap = document.querySelector(".seatWrap")
+let displayInfo = document.querySelector(".displayInfo")
 let movieMenu = document.getElementById("movieMenu")
-let movieOption = document.getElementsByClassName("movieOption")
-let displayPrice = document.getElementsByClassName("displayPrice")[0]
-// let seatWrap = document.getElementsByClassName("seatWrap")[0]
+let displayPrice = document.querySelector(".displayPrice")
 
 
 
@@ -41,69 +40,96 @@ godzilla.addMovieMenu()
 soundOfMetal.addMovieMenu()
 
 
-let selectMovie = () => {
-    let selectMovie = movieMenu.selectedIndex
-    let showSelectMovie = movieMenu[selectMovie].innerText
-    let moviePrice = movieMenu[selectMovie].value
-    // console.log(`${showSelectMovie} ${moviePrice}`)
-    // clear()
-    displaySeat(showSelectMovie, moviePrice)
-    // calPrice(price)
-}
+displayUI()
+// let ticketPrice = movieMenu.value
 
-// let clear = () => {
-//     location.reload()
-// }
-
-let price = 0
-
-let displaySeat = (showSelectMovie, moviePrice) => {
-    // seatWrap.innerHTML = (`${seatPlan}
-    // `)
-    
-    if (showSelectMovie !== "------- Select movie -------") {
-        displayInfo.innerHTML = (`${showSelectMovie}`)
-        price = moviePrice
-        return price
-    }
-    //  clickSeat(price)
+let saveData = (movieIndex, moviePrice) => {
+    localStorage.setItem("selectedMovieIndex", (movieIndex));
+    localStorage.setItem("selectedMoviePrice", (moviePrice));
 }
 
 
-let clickSeat = (evt) => {
-    let clickSeatBtn = evt.target
-    console.log(price)
 
-if(movieMenu.selectedIndex === 0){
-    alert("Please select a movie")
-    return
-}
 
-    // console.log(price)
-    if (clickSeatBtn.classList.value == "seat") {
-        clickSeatBtn.classList.value = "selectSeat"
-    } else if (clickSeatBtn.classList.value == "selectSeat") {
-        clickSeatBtn.classList.value = "seat"
-    }
-    calPrice(price)
-}
+let calTotal = () => {
 
-let calPrice = (price) => {
-   
-    
-    totalPrice =+ (selectSeat.length * price) - price
+    let selectedSeat = document.querySelectorAll(".row .seat.selected")
+    // console.log(selectedSeat.length)
+
+    let seatsIndex = [...selectedSeat].map((seats) => {
+        console.log([...seat].indexOf(seats))
+        return ([...seat].indexOf(seats))
+    })
+
+    localStorage.setItem("selectedSeat", JSON.stringify(seatsIndex));
+
+    let seatCount = selectedSeat.length
+    totalPrice = + seatCount * movieMenu.value
+
+    // console.log(ticketPrice)
     return displayPrice.innerHTML = (`<p>Total Price: $<p><span>${totalPrice}<span>`)
-    // return displayInfo.innerHTML = (`${totalPrice}`)
 }
 
-for (let i = 0; i < seat.length; i++) {
-    let seatBtn = seat[i];
-    seatBtn.addEventListener("click", clickSeat);
+function displayUI() {
+
+    // ============= get selected seats convert as number in array
+    let selectedSeat = JSON.parse(localStorage.getItem("selectedSeat"))
+    console.log(selectedSeat)
+
+    // ============= if select seat array not 0 or less than 0
+    if (selectedSeat !== null && selectedSeat.length > 0) {
+        // ============= run all seat and 
+        seat.forEach((seat, index) => {
+            if (selectedSeat.indexOf(index) > -1) {
+                seat.classList.add('selected');
+            }
+        });
+    }
+
+    const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+
+    if (selectedMovieIndex !== null) {
+        movieMenu.selectedIndex = selectedMovieIndex;
+    }
+   
+
+
 }
 
-movieMenu.addEventListener("change", selectMovie)
 
-let saveData = (totalPrice)
-localStorage.setItem("displaySeat" ,price)
+window.addEventListener("load" ,()=>{
+    let showSelectMovie = movieMenu[movieMenu.selectedIndex].innerText
+    displayInfo.innerHTML = (`${showSelectMovie}`)
+    calTotal()
+})
+
+// ============= Listen the change of movie list
+movieMenu.addEventListener("change", (evt) => {
+// console.log(`${evt.target.selectedIndex}`)
+console.log(movieMenu[evt.target.selectedIndex].innerText)
+    displayInfo.innerHTML = (`${movieMenu[evt.target.selectedIndex].innerText}`)
+    saveData(evt.target.selectedIndex, evt.target.value)
+    calTotal()
+})
+
+// ============= Listen the button click of seats
+seatWrap.addEventListener("click", (evt) => {
+    // console.log(evt.target.classList)
+
+    // ============= If not choose any movie return alert
+    if (movieMenu.value == 0) {
+        return alert("Please choose a movie")
+
+    } else {
+// ============= If the target is seat class but without book class
+        if (evt.target.classList.contains("seat") && !evt.target.classList.contains("booked")) {
+           
+            // ============= toggle the  change to selected class
+            evt.target.classList.toggle("selected")
+            calTotal()
+        }
+
+    }
 
 
+})

@@ -43,14 +43,6 @@ body {
   line-height: 25px;
 }
 
-.appWrap .iconWrap .selectSeat {
-  background-color: #1c3f00;
-  height: 20px;
-  width: 20px;
-  margin: 3px 2px;
-  margin-left: 15px;
-}
-
 .appWrap .iconWrap .seat {
   background-color: chartreuse;
   height: 20px;
@@ -59,7 +51,15 @@ body {
   margin-left: 15px;
 }
 
-.appWrap .iconWrap .seatBooked {
+.appWrap .iconWrap .seat.selected {
+  background-color: #1c3f00;
+  height: 20px;
+  width: 20px;
+  margin: 3px 2px;
+  margin-left: 15px;
+}
+
+.appWrap .iconWrap .seat.booked {
   background-color: red;
   height: 20px;
   width: 20px;
@@ -97,7 +97,7 @@ body {
           justify-content: center;
 }
 
-.appWrap .seatWrap .row .selectSeat {
+.appWrap .seatWrap .row .seat.selected {
   background-color: #1c3f00;
   height: 20px;
   width: 20px;
@@ -116,7 +116,7 @@ body {
           transform: scale(1.2);
 }
 
-.appWrap .seatWrap .row .seatBooked {
+.appWrap .seatWrap .row .seat.booked {
   background-color: red;
   height: 20px;
   width: 20px;
@@ -124,6 +124,6 @@ body {
 }
 
 .appWrap .seatWrap .row div:nth-child(8n + 2) {
-  margin-right: 25px;
+  margin-right: 25px !important;
 }
 /*# sourceMappingURL=style.css.map */

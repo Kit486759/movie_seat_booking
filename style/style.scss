@@ -34,16 +34,8 @@ body {
 
         span {
             // margin:auto;
-            height:30px;
+            height: 30px;
             line-height: 25px;
-        }
-
-        .selectSeat {
-            background-color: rgb(28, 63, 0);
-            height: 20px;
-            width: 20px;
-            margin: 3px 2px;
-            margin-left:15px;
         }
 
         .seat {
@@ -51,15 +43,22 @@ body {
             height: 20px;
             width: 20px;
             margin: 3px 2px;
-            margin-left:15px;
+            margin-left: 15px;
+        }
+        .seat.selected {
+            background-color: rgb(28, 63, 0);
+            height: 20px;
+            width: 20px;
+            margin: 3px 2px;
+            margin-left: 15px;
         }
 
-        .seatBooked {
+        .seat.booked {
             background-color: red;
             height: 20px;
             width: 20px;
             margin: 3px 2px;
-            margin-left:15px;
+            margin-left: 15px;
         }
     }
 
@@ -87,7 +86,7 @@ body {
             display: flex;
             justify-content: center;
 
-            .selectSeat {
+            .seat.selected {
                 background-color: rgb(28, 63, 0);
                 height: 20px;
                 width: 20px;
@@ -104,7 +103,7 @@ body {
                 transform: scale(1.2);
             }
 
-            .seatBooked {
+            .seat.booked {
                 background-color: red;
                 height: 20px;
                 width: 20px;
@@ -112,7 +111,9 @@ body {
             }
 
             div:nth-child(8n + 2) {
-                margin-right: 25px;
+                margin-right: 25px!important;
+
+                
             }
         }
     }
